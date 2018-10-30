@@ -4,6 +4,7 @@ import static qj.util.ReflectUtil.*;
 
 import qj.blog.classreloading.example4.crossing.ConnectionPool;
 import qj.util.ThreadUtil;
+import qj.util.lang.DynamicClassLoader;
 import qj.util.lang.ExceptingClassLoader;
 
 /**
@@ -27,6 +28,7 @@ public class KeepConnectionPool {
 		ExceptingClassLoader classLoader = new ExceptingClassLoader(
 				(className) -> className.contains(".crossing."),
 				"target/classes");
+//		DynamicClassLoader classLoader = new DynamicClassLoader("target/classes"); // this will cause error
 		Class<?> contextClass = classLoader.load("qj.blog.classreloading.example4.reloadable.Context");
 		Object context = newInstance(contextClass);
 		
